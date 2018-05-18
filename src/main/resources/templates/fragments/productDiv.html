@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <head>
+            <meta charset="UTF-8">
+            <title>Title</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+                  th:href="@{/css/bootstrap.min.css}"/>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                    th:src="@{/js/jquery-3.3.1.min.js}"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                    crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+                    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+                    crossorigin="anonymous"></script>
+
+        </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div th:fragment="productDiv (id, courseName, courseDescription, courseImgUrl, authorName, authorImgUrl, price)">
+                    <div class="course-listing">
+                        <div class="row">
+                            <a href="/product/1" th:href="@{/product/{id}(id = ${id})}">
+                                <div class="col-lg-12">
+                                    <div class="course-box-image-container">
+                                        <img role="presentation"
+                                             src="//d6xfpzo6h49n1.cloudfront.net/BXwTFNXDD4SjVt6H78-It1YgNj8=/fit-in/705x0/https://d2vvqscadf4c1f.cloudfront.net/scgeIJ9wRGGNWvK0jAld_ThumbFREE_01.png"
+                                             class="course-box-image" th:src="@{/images/{url}(url = ${courseImgUrl})}">
+                                    </div>
+                                    <div class="course-listing-title">
+                                        <span th:text="${courseName}"></span>
+                                    </div>
+                                    <div class="course-listing-subtitle">
+                                        <span th:text="${courseDescription}"></span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="row course-listing-extra-info col-12">
+                            <div class="col-8">
+                                <img align="left" alt="John Thompson"
+                                     src="//d6xfpzo6h49n1.cloudfront.net/aIKHFbsYXBCe0wY0jwCIdITOB5k=/30x30/https://d2vvqscadf4c1f.cloudfront.net/uZC7XjnzTMyJJeq5hShi_IMG_2800square.jpg"
+                                     class="img-circle" th:src="@{/images/{url}(url = ${authorImgUrl})}">
+                                <div class="small course-author-name">
+                                    <span th:text="${authorName}"></span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="small course-price">
+                                    <span th:text="${price}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
