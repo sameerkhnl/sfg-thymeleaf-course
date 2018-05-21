@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title th:text="#{checkoutform.page.title}">Checkout</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+              th:href="@{/css/bootstrap.min.css}"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    </head>
+
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <h2>Checkout Form</h2>
+            </div>
+            <form class="form mt-2" th:object="${checkoutCommand}" method="post" th:action="@{/docheckout}">
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}"
+                     th:text="#{checkoutCommand.hasErrors}">
+                    Error!
+                </div>
+                <div class="form-group mb-3 row"
+                     th:class="${#fields.hasErrors('firstName')} ? 'form-group mb-3 row text-danger' : 'form-group mb-3 row'">
+                    <label for="inputFirstName" class="text-right col-form-label col-2 font-weight-bold" th:text="#{checkoutCommand.firstName} + ':'">First
+                        Name:</label>
+                        <input type="text" class="form-control col-10" id="inputFirstName"
+                               placeholder="Enter first name"
+                               th:field="*{firstName}" th:errorClass="is-invalid"/>
+                        <div class="invalid-feedback offset-2" th:if="${#fields.hasErrors('firstName')}">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+
+                </div>
+                <div class="form-group mb-3 row" th:class="${#fields.hasErrors('lastName')} ? 'form-group mb-3 row text-danger' : 'form-group mb-3 row'">
+                    <label for="inputLastName" class="col-2 text-right col-form-label font-weight-bold" th:text="#{checkoutCommand.lastName} + ':'">Last
+                        Name:</label>
+                    <input type="text" class="form-control col-10" id="inputLastName" placeholder="Enter last name"
+                           th:field="*{lastName}" th:errorClass="is-invalid">
+                    <div class="invalid-feedback offset-2" th:if="${#fields.hasErrors('lastName')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group mb-3 row" th:class="${#fields.hasErrors('addressLine1')}? 'form-group mb-3 row text-danger' : 'form-group mb-3 row'">
+                    <label for="inputAddress1" class="col-2 text-right col-form-label font-weight-bold" th:text="#{checkoutCommand.addressLine1} + ' Line1 :'">Address
+                        Line1:</label>
+                    <input type="text" class="form-control col-10" id="inputAddress1" placeholder="Enter address1"
+                           th:field="*{addressLine1}" th:errorClass="'is-invalid'">
+                    <div class="invalid-feedback offset-2" th:if="${#fields.hasErrors('addressLine1')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('addressLine1')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group mb-3 row">
+                    <label for="inputAddress2" class="col-2 text-right col-form-label font-weight-bold" th:text="#{checkoutCommand.addressLine1} + ' Line 2: '">Address
+                        Line2:</label>
+                    <input type="text" class="form-control col-10" id="inputAddress2" placeholder="Enter address2"
+                           th:field="*{addressLine2}">
+                </div>
+                <div class="form-group mb-3 row" th:class="${#fields.hasErrors('city')}? 'form-group mb-3 row text-danger' : 'form-group mb-3 row'">
+                    <label for="inputCity" class="col-2 text-right col-form-label font-weight-bold" th:text="#{checkoutCommand.city} + ':'">City:</label>
+                    <input type="text" class="form-control col-10" id="inputCity" placeholder="Enter city name"
+                           th:field="*{city}" th:errorClass="is-invalid">
+                    <div class="invalid-feedback offset-2" th:if="${#fields.hasErrors('city')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('city')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group mb-3 row" th:class="${#fields.hasErrors('stateCode')}? 'form-group mb-3 row text-danger' : 'form-group mb-3 row'">
+                    <label for="inputStateCode" class="col-2 text-right col-form-label font-weight-bold" th:text="#{checkoutCommand.stateCode} + ':'">State
+                        Code:</label>
+                    <input type="text" class="form-control col-10" id="inputStateCode" placeholder="Enter state code"
+                           th:field="*{stateCode}" th:errorClass="is-invalid">
+                    <div class="offset-2 invalid-feedback" th:if="${#fields.hasErrors('stateCode')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('stateCode')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group mb-3 row" th:class="${#fields.hasErrors('zipCode')}? 'form-group mb-3 row text-danger' : 'form-group mb-3 row'">
+                    <label for="inputZipCode" class="col-2 text-right col-form-label font-weight-bold" th:text="#{checkoutCommand.zipCode} + ':'">Zip Code:</label>
+                    <input type="text" class="form-control col-10" id="inputZipCode" placeholder="Enter zip code"
+                           th:field="*{zipCode}" th:errorClass='is-invalid'>
+                    <div class="invalid-feedback offset-2" th:if="${#fields.hasErrors('zipCode')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('zipCode')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3 row">
+                    <label class="col-2 text-right" type="hidden"></label>
+                    <button type="submit" class="btn btn-primary">Buy Now</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

@@ -163,7 +163,8 @@
                     <div class="row course-listing-extra-info">
                         <div class="col-8"><img th:src="@{/images/instructor_jt.jpg}"
                                                 class="rounded-circle"/>
-                            <span class="course-author-name" th:text="${product.author.firstName + ' ' + product.author.lastName}"></span>
+                            <span class="course-author-name"
+                                  th:text="${product.author.firstName + ' ' + product.author.lastName}"></span>
                         </div>
 
                         <div class="col-4">
@@ -171,6 +172,19 @@
                                  th:text="${product.price > 0? '$ ' + product.price: 'Free'}">
                             </div>
                         </div>
+                    </div>
+                    <div class="row col-12">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item" th:each="productCategory: ${product.productCategories}"><a href="#" th:text="${productCategory.category}"></a></li>
+                            <li class="breadcrumb-item" th:remove="all"><a href="#">Cat1</span></a></li>
+                            <li class="breadcrumb-item" th:remove="all"><a href="#">Cat2</a></li>
+                            <li class="breadcrumb-item" th:remove="all"><a href="#">Cat3</a></li>
+                        </ol>
+
+                        <!--<ol class="breadcrumb" th:fragment="categories">-->
+                            <!--<li class="breadcrumb-item" th:each="productCategory: ${product.productCategories}"><a href="#"><span-->
+                                    <!--th:text="${productCategory.category}"></span></a></li>-->
+                        <!--</ol>-->
                     </div>
                 </div>
                 <div class="col-6">

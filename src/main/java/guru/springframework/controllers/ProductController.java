@@ -24,7 +24,7 @@ public class ProductController {
     @RequestMapping(value = "/product", method = RequestMethod.GET)
     public String getProduct() {
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "product/{id}", method = RequestMethod.GET)

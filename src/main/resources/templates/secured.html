@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+              th:href="@{/css/bootstrap.min.css}"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    </head>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Spring Security Demo</h2>
+                </div>
+            </div>
+
+            <div class="row" sec:authorize="isAuthenticated()">
+                <div class="offset-2 col-10">
+                    <h3 style="color: green;">User is logged in</h3>
+                </div>
+            </div>
+
+            <div class="row" sec:authorize="!isAuthenticated()">
+                <div class="offset-2 col-10">
+                    <h3 style="color: red;">User is logged out</h3>
+                </div>
+            </div>
+
+            <div class="row" sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="offset-2 col-10">
+                    <h3>User has role admin</h3>
+                </div>
+            </div>
+
+            <div class="row" sec:authorize="hasRole('ROLE_USER')">
+                <div class="offset-2 col-10">
+                    <h3>User has role user</h3>
+                </div>
+            </div>
+
+            <span sec:authentication="name" sec:authorize="isAuthenticated()"></span>
+            <span sec:authentication="principal.authorities" sec:authorize="isAuthenticated()"></span>
+
+        </div>
+    </body>
+</html>
